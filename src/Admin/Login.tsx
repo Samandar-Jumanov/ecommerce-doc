@@ -1,6 +1,7 @@
 import React, { useState , useContext } from 'react';
 import axios from 'axios';
 import { AccountInfoContext } from '../accountContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
@@ -8,6 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [companySecretKey, setCompanySecretKey] = useState('');
   const { setAccountInfo } = useContext(AccountInfoContext);
+  const navigate = useNavigate();
 
    
   const handleLogin = async () => {
@@ -18,6 +20,8 @@ const Login = () => {
         companySecretKey,
       });
       console.log('Login successful', response.data);
+      setAccountInfo(response.data.accountInfo);
+
     } catch (error : any ) {
       console.error('Error logging in:', error);
     }
@@ -45,6 +49,10 @@ const Login = () => {
         </label>
         <button type="button" onClick={handleLogin}>
           Login
+        </button>
+
+        <button type="button" onClick={() => navigate('/create-account')}>
+          Create account 
         </button>
       </form>
     </div>

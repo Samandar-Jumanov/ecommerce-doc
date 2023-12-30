@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useContext } from 'react';
 import { AccountInfoContext } from '../accountContext';
 import './AdminAccount.css'; // Import the CSS file
+import { useNavigate } from 'react-router-dom';
 
 const AdminAccount: React.FC = () => {
   const [name, setName] = useState('');
@@ -10,6 +11,7 @@ const AdminAccount: React.FC = () => {
   const [companySecretKey, setCompanySecretKey] = useState('');
   const [password, setPassword] = useState('');
   const { setAccountInfo } = useContext(AccountInfoContext);
+  const navigate = useNavigate();
 
   const handleCreateAccount = async () => {
     try {
@@ -54,6 +56,9 @@ const AdminAccount: React.FC = () => {
         </label>
         <button type="button" onClick={handleCreateAccount}>
           Create Account
+        </button>
+        <button type="button" onClick={()=> navigate('/login-account')}>
+          Login
         </button>
       </form>
     </div>
