@@ -1,6 +1,7 @@
 import React, { useState  } from 'react';
 import { AccountInfoContext } from './accountContext';
-import AdminAccount from './Admin/AdminAccount';
+import AdminAccount from './Admin/CreateAccount';
+import Login from './Admin/Login';
 
 function App() {
   const [accountInfo, setAccountInfo] = useState()
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <AccountInfoContext.Provider value ={ [accountInfo , setAccountInfo]}>
         <AdminAccount/>
+        <Login/>
       </AccountInfoContext.Provider>
     </div>
   );
