@@ -8,19 +8,21 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [companySecretKey, setCompanySecretKey] = useState('');
-  const { setAccountInfo } = useContext(AccountInfoContext);
+  const { setAccountInfo , setAlert , alert } = useContext(AccountInfoContext);
   const navigate = useNavigate();
 
    
   const handleLogin = async () => {
     try {
-      const response = await axios.post('https://ecommerce-api-vhac.onrender.com/admin/auth/account-login/', {
+      const response = await axios.post('https://ecommerce-api-7sxd.onrender.com/admin/auth/account-login/', {
         email,
         password,
         companySecretKey,
       });
       console.log('Login successful', response.data);
       setAccountInfo(response.data.accountInfo);
+      setAlert(response.data.alert);
+
 
     } catch (error : any ) {
       console.error('Error logging in:', error);
@@ -29,6 +31,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      <h1>{alert ?? alert}</h1>
       <h2>Login</h2>
       <form>
         <label>

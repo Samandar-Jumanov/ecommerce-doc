@@ -10,20 +10,23 @@ const AdminAccount: React.FC = () => {
   const [email, setEmail] = useState('');
   const [companySecretKey, setCompanySecretKey] = useState('');
   const [password, setPassword] = useState('');
-  const { setAccountInfo } = useContext(AccountInfoContext);
+  const { setAccountInfo , setAlert , alert  } = useContext(AccountInfoContext);
   const navigate = useNavigate();
 
   const handleCreateAccount = async () => {
     try {
-      const response = await axios.post('https://ecommerce-api-vhac.onrender.com/admin/auth/create-account/', {
+      const response = await axios.post('https://ecommerce-api-7sxd.onrender.com/admin/auth/create-account/', {
         name,
         surname,
         email,
         companySecretKey,
         password,
       });
+
      console.log(response.data)
      window.localStorage.setItem("token", response.data.adminInfo.token);
+     setAccountInfo(response.data.accountInfo);
+     setAlert(response.data.message);
      
     } catch (error: any) {
       console.error('Error creating account:', error.response.data.message);
@@ -32,6 +35,7 @@ const AdminAccount: React.FC = () => {
 
   return (
     <div className="container">
+      <h1> {alert ?? alert }</h1>
       <h2>Create Account</h2>
       <form>
         <label>
