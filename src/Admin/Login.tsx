@@ -8,8 +8,10 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [companySecretKey, setCompanySecretKey] = useState('');
-  const { setAccountInfo , setAlert , alert } = useContext(AccountInfoContext);
+  const { setAccountInfo } = useContext(AccountInfoContext);
   const navigate = useNavigate();
+  const [alert , setAlert] = useState();
+
 
    
   const handleLogin = async () => {

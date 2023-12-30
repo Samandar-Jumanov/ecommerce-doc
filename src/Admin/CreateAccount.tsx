@@ -10,7 +10,9 @@ const AdminAccount: React.FC = () => {
   const [email, setEmail] = useState('');
   const [companySecretKey, setCompanySecretKey] = useState('');
   const [password, setPassword] = useState('');
-  const { setAccountInfo , setAlert , alert  } = useContext(AccountInfoContext);
+  const { setAccountInfo  } = useContext(AccountInfoContext);
+  const [alert , setAlert] = useState();
+
   const navigate = useNavigate();
 
   const handleCreateAccount = async () => {
@@ -25,11 +27,12 @@ const AdminAccount: React.FC = () => {
 
      console.log(response.data)
      window.localStorage.setItem("token", response.data.adminInfo.token);
-     setAccountInfo(response.data.accountInfo);
+    //  setAccountInfo(response.data.accountInfo);
      setAlert(response.data.message);
      
     } catch (error: any) {
-      console.error('Error creating account:', error.response.data.message);
+      setAlert(error)
+      console.error('Error creating account:', error);
     }
   };
 
