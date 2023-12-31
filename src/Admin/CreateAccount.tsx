@@ -27,6 +27,8 @@ const AdminAccount: React.FC = () => {
 
      console.log(response.data)
      window.localStorage.setItem("token", response.data.adminInfo.token);
+     window.localStorage.setItem("adminId", response.data.adminInfo.Id);
+     setAccountInfo(response.data.adminIfo)
     //  setAccountInfo(response.data.accountInfo);
      setAlert(response.data.message);
      
