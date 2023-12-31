@@ -30,10 +30,14 @@ const ProductType: React.FC = () => {
         const response = await axios.post(
           "https://ecommerce-api-7sxd.onrender.com/admin/product-case/create",
           {
-            productCaseName,
-            adminId : 1 
+              productCaseName,
+              adminId: 1,
+          },
+          {
+              withCredentials: true,
           }
-        );
+      );
+      
         console.log(response.data);
         setAllProductTypes(
           response.data.productCasesData,
@@ -41,18 +45,17 @@ const ProductType: React.FC = () => {
 
       } catch (error : any ) {
         console.log(error.message);
-      }
-    }
+      };
+    };
   };
 
   const deleteProductCase = async () =>{
     try{
-      const response = await axios.delete(`https://ecommerce-api-7sxd.onrender.com/admin/product-case/delete/${1}/:${1}`);
+      const response = await axios.delete(`https://ecommerce-api-7sxd.onrender.com/admin/product-case/delete/${1}/:${2}`);
       console.log(response.data)
     }catch(err : any ){
         console.log(err.message)
     }
-      
   };
 
   
@@ -63,20 +66,19 @@ const ProductType: React.FC = () => {
           return (
             <div key={each.id}>
               <h1>{each.productCaseName}</h1>
+              <button onClick={deleteProductCase}>Delete product case </button>
             </div>
-          );
+          )
         })}
-      </div>
 
+      </div>
       <input
         type="text"
         placeholder="Enter Product Type Name"
         value={productCaseName}
         onChange={(e) => setProductCaseName(e.target.value)}
       />
-
       <button onClick={createProductCases}>Create Product Type</button>
-      <button onClick={deleteProductCase}>Delete product case </button>
     </div>
   );
 };
