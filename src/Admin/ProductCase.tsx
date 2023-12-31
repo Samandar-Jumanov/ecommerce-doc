@@ -45,6 +45,17 @@ const ProductType: React.FC = () => {
     }
   };
 
+  const deleteProductCase = async () =>{
+    try{
+      const response = await axios.delete(`https://ecommerce-api-7sxd.onrender.com/admin/product-case/delete/${1}/:${1}`);
+      console.log(response.data)
+    }catch(err : any ){
+        console.log(err.message)
+    }
+      
+  };
+
+  
   return (
     <div>
       <div>
@@ -65,6 +76,7 @@ const ProductType: React.FC = () => {
       />
 
       <button onClick={createProductCases}>Create Product Type</button>
+      <button onClick={deleteProductCase}>Delete product case </button>
     </div>
   );
 };
