@@ -28,17 +28,17 @@ const ProductType: React.FC = () => {
     } else {
       try {
         const response = await axios.post(
-          "https://ecommerce-api-7sxd.onrender.com/admin/product-cases",
+          "https://ecommerce-api-7sxd.onrender.com/admin/product-case/create",
           {
             productCaseName,
-            adminId,
+            adminId : 1 
           }
         );
         console.log(response.data);
         setAllProductTypes(
-          response.data.productCase,
+          response.data.productCasesData,
         );
-        
+
       } catch (error : any ) {
         console.log(error.message);
       }

@@ -21,13 +21,13 @@ const Login = () => {
         password,
         companySecretKey,
       });
-      
-      console.log('Login successful', response.data);
-      setAccountInfo(response.data.accountInfo);
-      setAlert(response.data.alert);
-      window.localStorage.setItem("adminId", response.data.adminInfo.Id);
-      window.localStorage.setItem("token", response.data.adminifo.token);
 
+      console.log('Login successful', response.data);
+      // setAccountInfo(response.data.accountInfo);
+      setAlert(response.data.alert);
+      window.localStorage.setItem("adminId", response.data.adminInfo);
+      window.localStorage.setItem("token", response.data.adminInfo);
+       navigate('/')
     } catch (error : any ) {
       console.error('Error logging in:', error);
     }
