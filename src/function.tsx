@@ -2,10 +2,11 @@ import axios from 'axios';
 import {urls} from './urls'
 
 
+
 export const getAllProductTypes =  async ()  =>{
      try{
         const response = await axios.get(urls.allProductCases)
-        return response.data;
+        return  { data :response.data}
      }catch(err : any ){
           return { err : err.message}
      }
@@ -38,7 +39,7 @@ export const updateProductCase = async () =>{
        const response = await axios.put(urls.updateProductCase , {
         productCase :'Updated one ',
        });
-       
+
         return response.data.message 
      } catch (error : any ) {
             return { err : error.message }
