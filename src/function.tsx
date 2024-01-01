@@ -14,7 +14,7 @@ export const getAllProductTypes =  async ()  =>{
 
 export const deleteProductCase = async () =>{
   try {
-    const response = await axios.get(urls.deleteProductCase)
+    const response = await axios.delete(urls.deleteProductCase)
     return response.data.message 
   } catch (error : any ) {
         return {error : error.message}
@@ -23,7 +23,10 @@ export const deleteProductCase = async () =>{
 
 export const createProductCase = async () =>{
        try{
-        const response = await axios.get(urls.deleteProductCase)
+        const response = await axios.post(urls.deleteProductCase , {
+            productCaseName :'First ever',
+            adminId : 1 
+        })
         return response.data.message 
        }catch(err : any ){
            return { err : err.message}
@@ -32,7 +35,10 @@ export const createProductCase = async () =>{
 
 export const updateProductCase = async () =>{
      try {
-       const response = await axios.get(urls.updateProductCase)
+       const response = await axios.put(urls.updateProductCase , {
+        productCase :'Updated one ',
+       });
+       
         return response.data.message 
      } catch (error : any ) {
             return { err : error.message }
